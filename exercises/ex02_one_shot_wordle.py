@@ -3,13 +3,12 @@
 __author__ = "730489294"
 
 # Initilizing the guess_word and secret_word 
-guess_word: str = input("What is your 6-letter guess? ")
-
 secret_word: str = "python"
+guess_word: str = input("What is your " + str(len(secret_word)) + " letter guess? ")
 
 # While loop checks length of guess and prompts the user to try again if the guess doesn't have a length of 6
 while len(guess_word) != len(secret_word):
-    guess_word = input("That was not 6 letters! Try again: ")
+    guess_word = input("That was not " + str(len(secret_word)) + " letters! Try again: ")
 
 # Initilizing the index counter and emoji string
 # The while loop has an in-else that goes through each letter in guess_word to see if it is equal to the letter at the same index of secret_word and concatinates the correct emoji
