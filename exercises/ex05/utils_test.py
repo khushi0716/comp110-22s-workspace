@@ -1,9 +1,9 @@
-"""Ex05 - Lists Test -"""
+"""Ex05 - Lists Test -."""
 
 __author__ = 730489294
 
 
-from exercises.ex05.utils import only_evens, sub, concat
+from utils import only_evens, sub, concat
 
 
 def test_only_evens_empty() -> None:
@@ -47,23 +47,55 @@ def test_sub_same_index() -> None:
     xs: list[int] = [1, 3, 5]
     assert sub(xs, 1, 1) == [3, 3]
 
+# Start
+
+
+def test_sub_start_and_end_indices_fall_within_range() -> None:
+    """Test to see what is returned when both indexes fall with range."""
+    xs: list[int] = [4, 5, 6, 7, 8, 0]
+    assert sub(xs, 2, 4) == [6, 7]
+
+
+def test_sub_start_index_equals_zero() -> None:
+    """Tests to see what will be returnned when the start index is 0."""
+    xs: list[int] = [4, 3, 5]
+    assert sub(xs, 0, 1) == [4, 4]
+
+
+def tests_sub_start_index_negative() -> None:
+    """Tests to see what will be returned when the start index is negative."""
+    xs: list[int] = [1, 3, 5, 7]
+    assert sub(xs, -1, 2) == [1, 3]
+
+
+def test_sub_with_index_greater_than_len_list() -> None:
+    """Tests to see what happens when the index is greater than the length of the list."""
+    xs: list[int] = [2, 3, 4, 5]
+    assert sub(xs, 2, 6) == [4, 5]
+
+
+def test_sub_list_is_empty() -> None:
+    """Tests to see what happens when the list is empty."""
+    xs: list[int] = list()
+    assert sub(xs, 2, 3) == list()
+
 
 def test_sub_last_two_indexes() -> None:
     """Tests to see if it will return a list of the last two int values."""
     xs: list[int] = [1, 3, 5]
-    assert sub(xs, (len(xs) - 2), len(xs) - 1) == [3, 5]
+    assert sub(xs, (len(xs) - 2), len(xs) - 1) == [3, 3]
 
 
 def test_sub_first_two_indexes() -> None:
     """Tests to see if it will return a list of the first two int values."""
     xs: list[int] = [1, 3, 5]
-    assert sub(xs, 0, 1) == [1, 3]
+    assert sub(xs, 0, 1) == [1, 1]
 
 
 def test_sub_higher_index_before_lower_index() -> None:
     """Tests to see if it will return a list when index "a" is larger than index "b"."""
     xs: list[int] = [3, 2, 6, 5, 4, 5]
-    assert sub(xs, 4, 2) == [4, 6]
+    assert sub(xs, 4, 2) == [4, 2]
 
 
 def test_concat_empty_lists() -> None:
