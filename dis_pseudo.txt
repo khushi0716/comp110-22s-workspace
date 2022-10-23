@@ -1,0 +1,34 @@
+DEFINE FUNCTION mainn():
+    SET encrypted_message: str TO INPUT("Please enter encrypted message:")
+    SET k_value TO INPUT("Please enter k:")
+    SET k_value TO int(k_value)
+    SET encrypted_mess_num TO []
+
+    FOR letter IN encrypted_message:
+        IF letter EQUALS " ":
+            encrypted_mess_num.append(" ")
+        ELSE:
+            encrypted_mess_num.append(ord(letter) - 65)
+
+    SET decrypted_mess_num TO []
+    FOR item IN encrypted_mess_num:
+        IF item EQUALS " ":
+            decrypted_mess_num.append(" ")
+        ELSE:
+            SET converted_num TO 0
+            SET int_encrypted_mess_num TO int(item)
+            SET converted_num TO (int_encrypted_mess_num - k_value) % 26
+            decrypted_mess_num.append(str(converted_num))
+
+    SET decrypt_message TO " "
+    FOR item IN decrypted_mess_num:
+        IF item EQUALS " ":
+            decrypt_message += " "
+        ELSE:
+            SET item TO int(item) + 65
+            decrypt_message += chr(item)
+
+    OUTPUT(decrypt_message)
+    RETURN decrypt_message
+
+mainn()
